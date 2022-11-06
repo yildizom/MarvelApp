@@ -3,17 +3,20 @@ package com.sample.marvelapp.presentation.ui.detail
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.sample.marvelapp.domain.model.Character
+import com.sample.marvelapp.domain.model.Comic
 import com.sample.marvelapp.domain.model.Res
 import com.sample.marvelapp.domain.use_case.GetCharacterUseCase
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.sample.marvelapp.domain.use_case.GetComicsByCharacterUseCase
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailViewModel @Inject constructor(private val getCharacterUseCase: GetCharacterUseCase):
+class DetailViewModel @Inject constructor(
+    private val getCharacterUseCase: GetCharacterUseCase,
+    private val getComicsByCharacterUseCase: GetComicsByCharacterUseCase
+):
     ViewModel() {
 
     val loadingOF = ObservableField(true)
@@ -31,6 +34,8 @@ class DetailViewModel @Inject constructor(private val getCharacterUseCase: GetCh
             }
         }.launchIn(viewModelScope)
     }
+
+    fun comicItems(id: Int) = getComicsByCharacterUseCase(id)
 
     private suspend fun onSuccess(character: Character) {
         viewModelScope.launch {

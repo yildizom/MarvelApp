@@ -83,11 +83,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="The error text lorem ipsum dolor sit amet." />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_description"
+                tools:listitem="@layout/item_comic" />
+
             <androidx.constraintlayout.widget.Group
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="@{viewModel.loadingOF || (viewModel.errorOF != null) ? View.GONE : View.VISIBLE}"
-                app:constraint_referenced_ids="iv_character_image, tv_character_description, tv_character_name" />
+                app:constraint_referenced_ids="iv_character_image, tv_character_description, tv_character_name, recycler_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
