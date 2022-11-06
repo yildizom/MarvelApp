@@ -1,6 +1,7 @@
 package com.sample.marvelapp.di
 
 import com.sample.marvelapp.data.MarvelApi
+import com.sample.marvelapp.data.MarvelAuthorizationInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,18 +26,27 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideAuthorizationInterceptor(): MarvelAuthorizationInterceptor {
+        return MarvelAuthorizationInterceptor()
+    }
+
+    @Provides
+    @Singleton
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        marvelAuthorizationInterceptor: MarvelAuthorizationInterceptor
     ): OkHttpClient {
-        return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
+        return OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(marvelAuthorizationInterceptor)
+            .build()
     }
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        // todo: add baseUrl
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://gateway.marvel.com/v1/public")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
