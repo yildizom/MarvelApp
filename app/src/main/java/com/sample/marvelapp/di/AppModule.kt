@@ -37,8 +37,8 @@ object AppModule {
         marvelAuthorizationInterceptor: MarvelAuthorizationInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(marvelAuthorizationInterceptor)
+            .addInterceptor(httpLoggingInterceptor)
             .build()
     }
 
@@ -46,7 +46,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://gateway.marvel.com/v1/public/")
+            .baseUrl("https://gateway.marvel.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

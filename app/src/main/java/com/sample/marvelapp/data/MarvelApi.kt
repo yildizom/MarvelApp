@@ -7,9 +7,9 @@ import retrofit2.http.Query
 
 interface MarvelApi {
 
-    @GET("/characters")
-    fun getCharacters(@Query("offset") offset: Int = 0, @Query("limit") limit: Int = 30): CharacterResponse
+    @GET("/v1/public//characters")
+    suspend fun getCharacters(@Query("offset") offset: Int = 0, @Query("limit") limit: Int = 30): CharacterResponse
 
-    @GET("/characters/{id}")
-    fun getCharacterById(@Path("id") id: Int): CharacterResponse
+    @GET("/v1/public//characters/{id}")
+    suspend fun getCharacterById(@Path("id") id: Int): CharacterResponse
 }

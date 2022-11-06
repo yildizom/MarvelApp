@@ -6,7 +6,6 @@ import okhttp3.Response
 import java.math.BigInteger
 import java.security.MessageDigest
 
-
 class MarvelAuthorizationInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val privateKey = BuildConfig.PRIVATE_KEY

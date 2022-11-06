@@ -10,7 +10,7 @@ class CharacterRepositoryImpl @Inject constructor(
 ): CharacterRepository {
 
     override suspend fun getCharacters(offset: Int): CharacterResponse {
-        return marvelApi.getCharacters(offset = offset)
+        return marvelApi.getCharacters(offset = offset, limit = 30)
     }
 
     override suspend fun getCharacterById(id: Int): CharacterResponse {
