@@ -60,4 +60,6 @@ dependencies {
 
     implementation Libs.glideImplementation
     implementation Libs.glideAnnotationProcessor
+
+    implementation Libs.timber
 }

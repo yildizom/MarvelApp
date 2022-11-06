@@ -22,4 +22,6 @@ object Libs {
 
     const val material = "com.google.android.material:material:${Versions.material}"
     const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
