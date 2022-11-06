@@ -32,9 +32,9 @@ class CharacterPagingSource(private val characterRepository: CharacterRepository
     }
 
     private fun getNextKey(offset: Int, limit: Int, count: Int): Int? {
-        if (offset + limit > count) {
+        if (count < limit) {
             return null
         }
-        return offset + limit
+        return offset + count
     }
 }
