@@ -15,6 +15,7 @@ import com.sample.marvelapp.R
 import com.sample.marvelapp.databinding.FragmentMainBinding
 import com.sample.marvelapp.presentation.ui.detail.DetailFragment
 import com.sample.marvelapp.presentation.ui.main.adapter.character.CharacterPagingAdapter
+import com.sample.marvelapp.presentation.ui.main.adapter.state.CharacterLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -54,7 +55,7 @@ class MainFragment: Fragment() {
         binding.apply {
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                adapter = this@MainFragment.adapter
+                adapter = this@MainFragment.adapter.withLoadStateFooter(CharacterLoadStateAdapter { this@MainFragment.adapter.retry() })
             }
 
             adapter.addLoadStateListener {
