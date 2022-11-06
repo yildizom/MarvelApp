@@ -9,8 +9,8 @@ class CharacterRepositoryImpl @Inject constructor(
     private val marvelApi: MarvelApi
 ): CharacterRepository {
 
-    override suspend fun getCharacters(page: Int): CharacterResponse {
-        return marvelApi.getCharacters(page)
+    override suspend fun getCharacters(offset: Int): CharacterResponse {
+        return marvelApi.getCharacters(offset = offset)
     }
 
     override suspend fun getCharacterById(id: Int): CharacterResponse {
