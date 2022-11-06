@@ -2,12 +2,10 @@ package com.sample.marvelapp.domain.use_case.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sample.marvelapp.domain.repository.CharacterRepository
 import com.sample.marvelapp.domain.model.Character
 import com.sample.marvelapp.domain.model.toCharacter
+import com.sample.marvelapp.domain.repository.CharacterRepository
 import timber.log.Timber
-import kotlin.math.max
-import kotlin.math.min
 
 class CharacterPagingSource(private val characterRepository: CharacterRepository):
     PagingSource<Int, Character>() {
